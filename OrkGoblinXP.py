@@ -31,23 +31,27 @@ def check_xp(get_actual_xp, get_xp):
     old_level = get_level(get_actual_xp)
     new_level = get_level(get_actual_xp + get_xp)
     if new_level > old_level:
-        print(f"{new_level}. szintre léptél, az új XP-d:", end="")
+        print(f"{new_level}. szintre léptél, az új XP-d: ", end="")
     else:
-        print(f"{get_xp} XP nem volt elég a szint lépésre, aktuális XP-d:", end="")
+        print(f"{get_xp} XP nem volt elég a szint lépésre, aktuális XP-d: ", end="")
     print (get_actual_xp + get_xp, "\n")
     return get_actual_xp + get_xp
 
-kezdo_xp = get_positive_int("Add meg a kezdő XP-t")
-goblin_xp = get_positive_int("Add meg a goblinokért járó XP-t")
-goblin_db = get_positive_int("Add meg a megölt goblinok számát")
-ork_xp = get_positive_int("Add meg az orkokért járó XP-t")
-ork_db = get_positive_int("Add meg a megölt orkok számát")
+# try - except a HTML-es tesztelés miatt
+try:
+    kezdo_xp = get_positive_int("Add meg a kezdő XP-t")
+    goblin_xp = get_positive_int("Add meg a goblinokért járó XP-t")
+    goblin_db = get_positive_int("Add meg a megölt goblinok számát")
+    ork_xp = get_positive_int("Add meg az orkokért járó XP-t")
+    ork_db = get_positive_int("Add meg a megölt orkok számát")
 
-print()
+    print()
 
-aktual_xp = check_xp(0, kezdo_xp)
-print("Csata a goblinokkal, db:",goblin_db, "goblin XP/db:",goblin_xp)
-aktual_xp = check_xp(aktual_xp, goblin_xp * goblin_db)
-print("Csata az orkokkal, db:", ork_db, "ork XP/db:",ork_xp)
-aktual_xp = check_xp(aktual_xp, ork_xp * ork_db)
-print('A program vége... köszönjük az együttműködést!')
+    aktual_xp = check_xp(0, kezdo_xp)
+    print("Csata a goblinokkal, db:",goblin_db, "goblin XP/db:",goblin_xp)
+    aktual_xp = check_xp(aktual_xp, goblin_xp * goblin_db)
+    print("Csata az orkokkal, db:", ork_db, "ork XP/db:",ork_xp)
+    aktual_xp = check_xp(aktual_xp, ork_xp * ork_db)
+    print('A program vége... köszönjük az együttműködést!')
+except SystemExit:
+    print("Kilépés.")
